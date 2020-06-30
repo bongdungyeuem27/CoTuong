@@ -1,14 +1,14 @@
 #include "QuanCo.h"
 
-void QuanCo::XoaChamTuong(vector<QuanCo*>& trang, vector<QuanCo*>& den)
+void QuanCo::XoaChamTuong()
 {
-	for (int i = 0; i < trong.size(); ++i)
-	{
-		
-		if (trong[i].x>x2|| trong[i].x < x1|| trong[i].y<y1|| trong[i].y>y2)
+    for (int i = trong.size() - 1; i >= 0; i--)
+    {
+        
+        if (trong.at(i).x > x2 || trong.at(i).x < x1 || trong.at(i).y<y1 || trong.at(i).y>y2)
 		{
 			trong.erase(trong.begin() + i);
-			--i;
+            break;
 		}
 	}
 }
@@ -18,42 +18,41 @@ Point::Point()
 }
 
 
-void Den::XoaChamDongDoi(vector<QuanCo*>& trang, vector<QuanCo*>& den)
+void QuanCo::XoaChamDongDoi()
 {
-    for (int i = 0; i < trong.size(); ++i)
+    for (int i = trong.size() - 1; i >= 0; i--)
     {
-
-        for (int j = 0; j < den.size(); ++j)
+        //cout << i;   //test
+        for (int j = 0; j < den->size(); ++j)
         {
-
-            if (trong[i].x == den[j]->Getpx() && trong[i].y == den[j]->Getpy())
+            if (trong[i].x == den->at(j)->Getpx() && trong[i].y == den->at(j)->Getpy())
             {
                 trong.erase(trong.begin() + i);
-                --i;
+                break;
+            }            
+        }      
+    }
+}
+
+void QuanCo::XoaChamDoiPhuong()
+{
+    for (int i = trong.size() - 1; i >= 0; i--)
+    {
+        for (int j = 0; j < trang->size(); ++j)
+        {
+            if (trong[i].x == trang->at(j)->Getpx() && trong[i].y == trang->at(j)->Getpy())
+            {
+                cham.push_back(Point(trong[i].x, trong[i].y));
+                trong.erase(trong.begin() + i);  
+                break;
             }
         }
     }
 }
 
-void Den::XoaChamDoiPhuong(vector<QuanCo*>& trang, vector<QuanCo*>& den)
+void QuanCo::Menu()
 {
-    for (int i = 0; i < trong.size(); ++i)
-    {
-        for (int j = 0; j < trang.size(); ++j)
-        {
-            if (trong[i].x == trang[j]->Getpx() && trong[i].y == trang[j]->Getpy())
-            {
-                cham.push_back(trong[i]);
-                trong.erase(trong.begin() + i);
-                --i;
-            }
-        }
-    }
-}
-
-void QuanCo::Menu(vector<QuanCo*>& trang, vector<QuanCo*>& den)
-{
-    gotoXY(0, 12);
+    gotoXY(0, 14);
     cout << "Cac vi tri trong: " << endl;
     for (int i = 0; i < trong.size(); ++i)
     {
@@ -69,7 +68,6 @@ void QuanCo::Menu(vector<QuanCo*>& trang, vector<QuanCo*>& den)
     Point select;
     while (1)
     {
-
         cout << "Lua chon: ";
         int key;
         cin >> key;
@@ -81,22 +79,22 @@ void QuanCo::Menu(vector<QuanCo*>& trang, vector<QuanCo*>& den)
                 select = Point(trong[key].x, trong[key].y);
             else if (key >= trong.size())
             {
-                for (int i = 0; i < trang.size(); ++i)
+                for (int i = trang->size()-1; i >=0; --i)
                 {
-                    if (select.x == trang[i]->Getpx() && select.y == trang[i]->Getpy())
+                    if (select.x == trang->at(i)->Getpx() && select.y == trang->at(i)->Getpy())
                     {
-                        delete trang[i];
-                        trang.erase(trang.begin() + i);
-                        --i;
+                        delete trang->at(i);
+                        trang->erase(trang->begin() + i);
+                                              
                         select = Point(cham[key].x, cham[key].y);
 
                         break;
                     }
                 }
             }
-            gotoXY(0, 17); cout << endl << endl;
+            gotoXY(0, 19); cout << endl << endl;
 
-            gotoXY(0, 17);
+            gotoXY(0, 19);
             cout << "Da lua chon: " << key << ":(" << select.x << "," << select.y << ")";
 
 

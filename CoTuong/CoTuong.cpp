@@ -27,6 +27,7 @@ int main()
 
     
     gotoXY(0, 17);
+    delete b;
     system("pause");
 
 }

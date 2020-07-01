@@ -67,24 +67,29 @@ public:
     void ReFresh()
     {
         system("cls");
-        for (int i = 0; i < trang.size(); ++i)
+        changColor(14);
+        for (int i = den.size() - 1; i >= 0; i--)
         {
-            gotoXY(9 - trang[i]->Getpx(), 10 - trang[i]->Getpy()); cout << "O";
+            gotoXY(den[i]->Getpx() - 1, 10 - den[i]->Getpy()); den[i]->VeQuanCo();
         }
-        for (int i = 0; i < den.size(); ++i)
+        changColor(15);
+        for (int i = trang.size() - 1; i >= 0; i--)
         {
-            gotoXY(den[i]->Getpx()-1, 10 - den[i]->Getpy()); cout << "O";
+            gotoXY(trang[i]->Getpx() - 1, 10 - trang[i]->Getpy()); trang[i]->VeQuanCo();
         }
+        changColor(14);
         gotoXY(70, 0); cout << "Ben Den";
-        for (int i = 0; i < den.size(); i++)
+        for (int i = den.size() - 1; i >= 0; i--)
         {
-            gotoXY(70, i+1); cout << "[" <<setw(2) << right << i << "]:" << setw(6) <<left<< den[i]->GetTenQuanCo() << "(" << den[i]->Getpx() << "," << den[i]->Getpy() << ")";
+            gotoXY(70, i + 1); cout << "[" << setw(2) << right << i << "]:" << setw(6) << left << den[i]->GetTenQuanCo(); den[i]->VeQuanCo();cout << " (" << den[i]->Getpx() << "," << den[i]->Getpy() << ") ";
         }
-        gotoXY(90, 0); cout << "Ben Trang";
-        for (int i = 0; i < trang.size(); i++)
+        changColor(15);
+        gotoXY(95, 0); cout << "Ben Trang";
+        for (int i = trang.size() - 1; i >= 0; i--)
         {
-            gotoXY(90, i+1); cout << "[" << setw(2) << right << i << "]:" <<setw(6) << left <<trang[i]->GetTenQuanCo() << "(" << trang[i]->Getpx() << "," << trang[i]->Getpy() << ")";
+            gotoXY(95, i + 1); cout << "[" << setw(2) << right << i << "]:" << setw(6) << left << trang[i]->GetTenQuanCo(); trang[i]->VeQuanCo(); cout << " (" << trang[i]->Getpx() << "," << trang[i]->Getpy() << ") ";
         }
+ 
       
     }
     void Run()
@@ -92,10 +97,26 @@ public:
         int n = 0;
         while (trang.size() != 0 || den.size() != 0)
         {                  
-            gotoXY(0, 12); cout << "BEN 1: Chon quan co: "; cin >> n;
+            gotoXY(0, 12); cout << "BEN DEN: Chon quan co: "; cin >> n; 
+            while (1)
+            {
+                if (n < 0 || n >= den.size())
+                {
+                    cout << "Nhap lai!: "; cin >> n;
+                }
+                else break;
+            }
             den.at(n)->DiChuyen();
             ReFresh();
-            gotoXY(0, 12); cout << "BEN 2: Chon quan co: "; cin >> n;
+            gotoXY(0, 12); cout << "BEN TRANG: Chon quan co: "; cin >> n;
+            while (1)
+            {
+                if (n < 0 || n >= trang.size())
+                {
+                    cout << "Nhap lai!: "; cin >> n;
+                }
+                else break;
+            }
             trang.at(n)->DiChuyen();
             ReFresh();
         }

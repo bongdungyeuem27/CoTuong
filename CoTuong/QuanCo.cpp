@@ -4,13 +4,15 @@ void QuanCo::XoaChamTuong()
 {
     for (int i = trong.size() - 1; i >= 0; i--)
     {
-        
+        //cout << i;
+        //cout << "(" << trong[i].x << "," << trong[i].y << ") ";
         if (trong.at(i).x > x2 || trong.at(i).x < x1 || trong.at(i).y<y1 || trong.at(i).y>y2)
 		{
 			trong.erase(trong.begin() + i);
             break;
 		}
 	}
+    cout << endl;
 }
 
 Point::Point()
@@ -38,6 +40,7 @@ void QuanCo::XoaChamDoiPhuong()
 {
     for (int i = trong.size() - 1; i >= 0; i--)
     {
+        //cout << i;   //test
         for (int j = 0; j < trang->size(); ++j)
         {
             if (trong[i].x == trang->at(j)->Getpx() && trong[i].y == trang->at(j)->Getpy())
@@ -74,20 +77,17 @@ void QuanCo::Menu()
         if (key < 0 || key >= trong.size() + cham.size()) cout << "Moi nhap lai!";
         else
         {
-
             if (key < trong.size())
                 select = Point(trong[key].x, trong[key].y);
             else if (key >= trong.size())
             {
+                select = Point(cham[key].x, cham[key].y);
                 for (int i = trang->size()-1; i >=0; --i)
                 {
                     if (select.x == trang->at(i)->Getpx() && select.y == trang->at(i)->Getpy())
                     {
                         delete trang->at(i);
                         trang->erase(trang->begin() + i);
-                                              
-                        select = Point(cham[key].x, cham[key].y);
-
                         break;
                     }
                 }

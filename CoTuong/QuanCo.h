@@ -35,8 +35,9 @@ protected:
     vector <QuanCo*>* trang;
     vector <QuanCo*>* den;
     Point p;
-    bool mau;
+    
     string TenQuanCo;
+    string kihieuquanco;
 public:
     //1
     QuanCo()
@@ -71,6 +72,13 @@ public:
     {
         p.y = a;
     }
+    virtual void VeQuanCo()
+    {
+        cout << kihieuquanco;
+
+    }
+    
+    
     
     virtual ~QuanCo()
     {
@@ -84,9 +92,10 @@ class Tuong : public QuanCo
 {
 public:
     Tuong();
-    Tuong(vector<QuanCo*>* team1, vector<QuanCo*>* team2, bool mau, int x, int y)
+    Tuong(vector<QuanCo*>* team1, vector<QuanCo*>* team2, int mau, int x, int y)
     {
         TenQuanCo = "Tuong";
+        kihieuquanco = '+';
         p.x = x; p.y = y;
         if (mau == 0)
         {
@@ -100,7 +109,7 @@ public:
             trang = team1;
             y1 = 8, y2 = consoy2, x1 = 4, x2 = 6;
         }
-
+        
     }
 
     void NuocDiCoBan()
@@ -130,10 +139,13 @@ class Si : public QuanCo
 {
 public:
     Si();
-    Si(vector<QuanCo*>* team1, vector<QuanCo*>* team2, bool mau, int x, int y)
+    Si(vector<QuanCo*>* team1, vector<QuanCo*>* team2, int mau, int x, int y)
     {
+        
         TenQuanCo = "Si";
+        kihieuquanco = 'O';
         p.x = x; p.y = y;
+        
         if (mau == 0)
         {
             den = team1;
@@ -176,9 +188,11 @@ class Tinh : public QuanCo
 {
 public:
     Tinh();
-    Tinh(vector<QuanCo*>* team1, vector<QuanCo*>* team2, bool mau, int x, int y)
+    Tinh(vector<QuanCo*>* team1, vector<QuanCo*>* team2, int mau, int x, int y)
     {
+       
         TenQuanCo = "Tinh";
+        kihieuquanco = '#';
         p.x = x; p.y = y;
         if (mau == 0)
         {
@@ -223,7 +237,7 @@ public:
             }
         }
     }
-
+  
     void DiChuyen()
     {
         NuocDiCoBan();
@@ -246,9 +260,11 @@ class Ma : public QuanCo
 public:
     Ma();
 
-    Ma(vector<QuanCo*>* team1, vector<QuanCo*>* team2, bool mau, int x, int y)
+    Ma(vector<QuanCo*>* team1, vector<QuanCo*>* team2, int mau, int x, int y)
     {
+       
         TenQuanCo = "Ma";
+        kihieuquanco = '~';
         p.x = x; p.y = y;
         y1 = consoy1, y2 = consoy2, x1 = consox1, x2 = consox2;
         if (mau == 0)
@@ -363,7 +379,7 @@ public:
                 }
         }
     }
-
+  
     void DiChuyen()
     {
         NuocDiCoBan();
@@ -385,9 +401,11 @@ class Xe : public QuanCo
 {
 public:
     Xe();
-    Xe(vector<QuanCo*>* team1, vector<QuanCo*>* team2, bool mau, int x, int y)
+    Xe(vector<QuanCo*>* team1, vector<QuanCo*>* team2, int mau, int x, int y)
     {
+       
         TenQuanCo = "Xe";
+        kihieuquanco = 'X';
         p.x = x; p.y = y;
         y1 = consoy1, y2 = consoy2, x1 = consox1, x2 = consox2;
         if (mau == 0)
@@ -501,7 +519,7 @@ public:
             }
         }
     }
-
+  
     void DiChuyen()
     {
         NuocDiCoBan();
@@ -522,9 +540,11 @@ class Phao : public QuanCo
 {
 public:
     Phao();
-    Phao(vector<QuanCo*>* team1, vector<QuanCo*>* team2, bool mau, int x, int y)
+    Phao(vector<QuanCo*>* team1, vector<QuanCo*>* team2, int mau, int x, int y)
     {
+       
         TenQuanCo = "Phao";
+        kihieuquanco = '@';
         p.x = x; p.y = y;
         y1 = consoy1, y2 = consoy2, x1 = consox1, x2 = consox2;
         if (mau == 0)
@@ -695,7 +715,7 @@ public:
         }
   
     }
-
+  
     void DiChuyen()
     {
         NuocDiCoBan();
@@ -713,12 +733,17 @@ public:
 
 class Tot : public QuanCo
 {
+    int doi;
 public:
     Tot();
-    Tot(vector<QuanCo*>* team1, vector<QuanCo*>* team2, bool mau, int x, int y)
+    Tot(vector<QuanCo*>* team1, vector<QuanCo*>* team2, int mau, int x, int y)
     {
+       
+
         TenQuanCo = "Tot";
+        kihieuquanco = ':';
         p.x = x; p.y = y;
+        doi = mau;
         y1 = consoy1, y2 = consoy2, x1 = consox1, x2 = consox2;
         if (mau == 0)
         {
@@ -733,7 +758,7 @@ public:
     }
     void NuocDiCoBan()
     {
-        if (mau == 0)
+        if (doi == 0)
         {
             trong.push_back(Point(p.x, p.y + 1));
             if (p.y >= 6)
@@ -752,7 +777,7 @@ public:
             }
         }
     }
-
+ 
     void DiChuyen()
     {
         NuocDiCoBan();

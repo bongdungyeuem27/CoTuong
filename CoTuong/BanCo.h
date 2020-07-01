@@ -8,16 +8,12 @@
 #include <iostream>
 #include <cstdlib>
 
-
 #include "source.h"
 #include "QuanCo.h"
 using namespace std;
 class BanCo
 {
 private:
-
-   
-
 protected:
 public:
     vector <QuanCo*> trang;

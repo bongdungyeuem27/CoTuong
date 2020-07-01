@@ -8,7 +8,6 @@
 #include <iostream>
 #include <cstdlib>
 
-
 #include "source.h"
 #include "QuanCo.h"
 using namespace std;
@@ -26,7 +25,6 @@ public:
 class QuanCo
 {
 private:
-   
 protected:
     int consox1 = 1, consox2 = 9, consoy1 = 1, consoy2 = 10;
     int x1, x2, y1, y2;
@@ -35,7 +33,6 @@ protected:
     vector <QuanCo*>* trang;
     vector <QuanCo*>* den;
     Point p;
-    
     string TenQuanCo;
     string kihieuquanco;
 public:
@@ -76,9 +73,7 @@ public:
     {
         cout << kihieuquanco;
 
-    }
-    
-    
+    }   
     
     virtual ~QuanCo()
     {

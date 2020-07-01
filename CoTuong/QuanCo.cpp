@@ -81,11 +81,13 @@ void QuanCo::Menu()
                 select = Point(trong[key].x, trong[key].y);
             else if (key >= trong.size())
             {
-                select = Point(cham[key].x, cham[key].y);
+                cout << "see!!";
+                select = Point(cham[key-trong.size()].x, cham[key - trong.size()].y);
                 for (int i = trang->size()-1; i >=0; --i)
                 {
                     if (select.x == trang->at(i)->Getpx() && select.y == trang->at(i)->Getpy())
                     {
+                       // cout << "see!!";
                         delete trang->at(i);
                         trang->erase(trang->begin() + i);
                         break;

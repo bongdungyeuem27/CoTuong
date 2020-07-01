@@ -28,6 +28,7 @@ private:
 protected:
     int consox1 = 1, consox2 = 9, consoy1 = 1, consoy2 = 10;
     int x1, x2, y1, y2;
+    bool thua = 0;
     vector <Point> trong;
     vector <Point> cham;
     vector <QuanCo*>* trang;
@@ -56,6 +57,10 @@ public:
     //Getter and Setter
     int Getpx() { return p.x; }
     int Getpy() { return p.y; }
+    bool Getthua()
+    {
+        return thua;
+    }
     string GetTenQuanCo()
     {
         return TenQuanCo;
@@ -104,6 +109,7 @@ public:
             trang = team1;
             y1 = 8, y2 = consoy2, x1 = 4, x2 = 6;
         }
+        thua = 1;
         
     }
 
@@ -145,7 +151,7 @@ public:
         {
             den = team1;
             trang = team2;
-            y1 = consox1, y2 = 3, x1 = 4, x2 = 6;
+            y1 = consoy1, y2 = 3, x1 = 4, x2 = 6;
         }
         else
         {
@@ -170,6 +176,7 @@ public:
         XoaChamDongDoi();
         XoaChamDoiPhuong();
         Menu();
+        //int k; cin >> k;
         trong.clear();
         cham.clear();
     }
@@ -641,73 +648,91 @@ public:
                 }
             }
         }
-
-        int count = 0;
-        for (int i = trong.size() - 1; i >= 0; i--)
+        
+        /*
+        cout << "dong1:";
+        for (int i = cham.size() - 1; i >= 0; i--)
         {
+            cout << cham[i].x << "," << cham[i].y << "\t";
+        }
+        */
+
+        cout << endl;
+        int count;
+        for (int i = cham.size() - 1; i >= 0; i--)
+        {
+            
             count = 0;
             for (int j = 0; j < den->size(); ++j)
             {
-                if (p.x < den->at(j)->Getpx() && den->at(j)->Getpx() < trong[i].x && p.y == den->at(j)->Getpy())
+                if (p.x < den->at(j)->Getpx() && den->at(j)->Getpx() < cham[i].x && p.y == den->at(j)->Getpy())
                 {
-                    ++count;
+                    count++;
                 }
+                else
+                if (cham[i].x < den->at(j)->Getpx() && den->at(j)->Getpx() < p.x && p.y == den->at(j)->Getpy())
+                {
+                    count++;
+                }
+                else
+                if (p.y < den->at(j)->Getpy() && den->at(j)->Getpy() < cham[i].y && p.x == den->at(j)->Getpx())
+                {
+                    count++;
 
-                if (trong[i].x < den->at(j)->Getpx() && den->at(j)->Getpx() < p.x && p.y == den->at(j)->Getpy())
-                {
-                    ++count;
                 }
+                else
+                if (cham[i].y < den->at(j)->Getpy() && den->at(j)->Getpy() < p.y && p.x == den->at(j)->Getpx())
+                {
+                    count++;
 
-                if (p.y < den->at(j)->Getpy() && den->at(j)->Getpy() < trong[i].y && p.x == den->at(j)->Getpx())
-                {
-                    ++count;
-                }
-
-                if (trong[i].y < den->at(j)->Getpy() && den->at(j)->Getpy() < p.y && p.x == den->at(j)->Getpx())
-                {
-                    ++count;
-                }
+                }     
+              
             }
-            if (count != 2)
+            /*cout << "|" << count << "|";
+            cout << "dong1." << i << "   ";
+            for (int i = cham.size() - 1; i >= 0; i--)
             {
-                trong.erase(trong.begin() + i);
-                continue;
+                cout << cham[i].x << "," << cham[i].y << "\t";
             }
-           
-        }
-
-        for (int i = 0; i < cham.size(); ++i)
-        {
-            count = 0;
+            cout << endl;*/
             for (int j = 0; j < trang->size(); ++j)
             {
                 if (p.x < trang->at(j)->Getpx() && trang->at(j)->Getpx() < cham[i].x && p.y == trang->at(j)->Getpy())
                 {
-                    ++count;
+                    count++;
+
                 }
 
                 if (cham[i].x < trang->at(j)->Getpx() && trang->at(j)->Getpx() < p.x && p.y == trang->at(j)->Getpy())
                 {
-                    ++count;
+                    count++;
                 }
 
                 if (p.y < trang->at(j)->Getpy() && trang->at(j)->Getpy() < cham[i].y && p.x == trang->at(j)->Getpx())
                 {
-                    ++count;
+                    count++;
                 }
 
                 if (cham[i].y < trang->at(j)->Getpy() && trang->at(j)->Getpy() < p.y && p.x == trang->at(j)->Getpx())
                 {
-                    ++count;
+                    count++;
                 }
             }
-            if (count != 2)
+            if (count != 1)
             {
                 cham.erase(cham.begin() + i);
-                continue;
             }
-
         }
+       /* cout << endl;
+        cout << "dong2:";
+        for (int i = cham.size() - 1; i >= 0; i--)
+        {
+            cout << cham[i].x << "," << cham[i].y << "\t";
+        }
+        cout << endl;
+        */
+
+
   
     }
   
@@ -718,6 +743,7 @@ public:
         XoaChamDoiPhuong();
         XoaBiChan();
         Menu();
+    
         trong.clear();
         cham.clear();
     }

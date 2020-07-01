@@ -2,14 +2,17 @@
 
 void QuanCo::XoaChamTuong()
 {
+   // cout << "x1=" << x1 << "x2=" << x2 << "y1=" << y1 << "y2=" << y2 << endl;
+    //cout << "tuong";
     for (int i = trong.size() - 1; i >= 0; i--)
     {
         //cout << i;
-        //cout << "(" << trong[i].x << "," << trong[i].y << ") ";
+        /*for (int o = trong.size() - 1; o >= 0; o--)
+        cout << "(" << trong[o].x << "," << trong[o].y << ") ";
+        cout << endl;*/
         if (trong.at(i).x > x2 || trong.at(i).x < x1 || trong.at(i).y<y1 || trong.at(i).y>y2)
 		{
 			trong.erase(trong.begin() + i);
-            break;
 		}
 	}
     cout << endl;
@@ -55,25 +58,36 @@ void QuanCo::XoaChamDoiPhuong()
 
 void QuanCo::Menu()
 {
-    gotoXY(0, 14);
+    gotoXY(0, 20);
     cout << "Cac vi tri trong: " << endl;
     for (int i = 0; i < trong.size(); ++i)
     {
         cout << "[" << i << "]:(" << trong[i].x << "," << trong[i].y << ")\t";
+        if (i % 5 == 4) cout << endl;
     }
     cout << endl;
     cout << "Cac vi tri cham: " << endl;
     for (int i = 0; i < cham.size(); ++i)
     {
         cout << "[" << trong.size() + i << "]:(" << cham[i].x << "," << cham[i].y << ")\t";
+        if (i % 5 == 4) cout << endl;
     }
     cout << endl;
     Point select;
+    if ((trong.size() + cham.size()) == 0)
+    {
+        cout << "Khong the di chuyen! Nhap phim bat ky de tiep tuc!";
+        char key;
+        cin >> key;
+        return;
+    }
     while (1)
     {
+   
         cout << "Lua chon: ";
         int key;
         cin >> key;
+
         if (key < 0 || key >= trong.size() + cham.size()) cout << "Moi nhap lai!";
         else
         {
@@ -94,9 +108,9 @@ void QuanCo::Menu()
                     }
                 }
             }
-            gotoXY(0, 19); cout << endl << endl;
+            gotoXY(0, 25); cout << endl << endl;
 
-            gotoXY(0, 19);
+            gotoXY(0, 25);
             cout << "Da lua chon: " << key << ":(" << select.x << "," << select.y << ")";
 
 

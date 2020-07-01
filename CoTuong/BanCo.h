@@ -91,9 +91,22 @@ public:
     void Run()
     {
         int n = 0;
+        bool thua;
+    
         while (trang.size() != 0 || den.size() != 0)
-        {                  
-            gotoXY(0, 12); cout << "BEN DEN: Chon quan co: "; cin >> n; 
+        {             
+            thua = 0;
+            for (int i = den.size() - 1; i >= 0; i--)
+            {
+                thua += den[i]->Getthua();
+            }
+            if (thua == 0)
+            {
+                gotoXY(0, 30);
+                cout << "BEN DEN thua! BEN TRANG thang! ";
+                break;
+            }
+            gotoXY(0, 18); cout << "BEN DEN: Chon quan co: "; cin >> n; 
             while (1)
             {
                 if (n < 0 || n >= den.size())
@@ -104,7 +117,19 @@ public:
             }
             den.at(n)->DiChuyen();
             ReFresh();
-            gotoXY(0, 12); cout << "BEN TRANG: Chon quan co: "; cin >> n;
+            thua = 0;
+            for (int i = trang.size() - 1; i >= 0; i--)
+            {
+                thua += trang[i]->Getthua();
+            }
+            if (thua == 0)
+            {
+                gotoXY(0, 30);
+                cout << "BEN TRANG thua! BEN DEN thang! ";
+                break;
+            }
+
+            gotoXY(0, 18); cout << "BEN TRANG: Chon quan co: "; cin >> n;
             while (1)
             {
                 if (n < 0 || n >= trang.size())

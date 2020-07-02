@@ -104,7 +104,7 @@ public:
             {
                 gotoXY(0, 30);
                 cout << "BEN DEN thua! BEN TRANG thang! ";
-                break;
+                return;
             }
             gotoXY(0, 18); cout << "BEN DEN: Chon quan co: "; cin >> n; 
             while (1)
@@ -126,7 +126,7 @@ public:
             {
                 gotoXY(0, 30);
                 cout << "BEN TRANG thua! BEN DEN thang! ";
-                break;
+                return;
             }
 
             gotoXY(0, 18); cout << "BEN TRANG: Chon quan co: "; cin >> n;

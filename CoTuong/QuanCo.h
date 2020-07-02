@@ -77,7 +77,6 @@ public:
     virtual void VeQuanCo()
     {
         cout << kihieuquanco;
-
     }   
     
     virtual ~QuanCo()
@@ -85,7 +84,6 @@ public:
         trong.clear();
         cham.clear();
     }
-
 };
 
 class Tuong : public QuanCo

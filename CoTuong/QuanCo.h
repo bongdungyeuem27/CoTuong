@@ -74,10 +74,8 @@ public:
     {
         p.y = a;
     }
-    virtual void VeQuanCo()
-    {
-        cout << kihieuquanco;
-    }   
+    virtual void VeQuanCo();
+       
     
     virtual ~QuanCo()
     {
@@ -111,24 +109,10 @@ public:
         
     }
 
-    void NuocDiCoBan()
-    {
-        trong.push_back(Point(p.x + 1, p.y));
-        trong.push_back(Point(p.x - 1, p.y));
-        trong.push_back(Point(p.x, p.y + 1));
-        trong.push_back(Point(p.x, p.y - 1));
-    }
-
-    void DiChuyen()
-    {
-        NuocDiCoBan();
-        XoaChamTuong();
-        XoaChamDongDoi();
-        XoaChamDoiPhuong();
-        Menu();
-        trong.clear();
-        cham.clear();
-    }
+    void NuocDiCoBan();
+    
+    void DiChuyen();
+    
     ~Tuong()
     {
     }
@@ -159,25 +143,10 @@ public:
         }
     }
 
-    void NuocDiCoBan()
-    {
-        trong.push_back(Point(p.x + 1, p.y + 1));
-        trong.push_back(Point(p.x - 1, p.y + 1));
-        trong.push_back(Point(p.x - 1, p.y - 1));
-        trong.push_back(Point(p.x + 1, p.y - 1));
-    }
+    void NuocDiCoBan();
 
-    void DiChuyen()
-    {
-        NuocDiCoBan();
-        XoaChamTuong();
-        XoaChamDongDoi();
-        XoaChamDoiPhuong();
-        Menu();
-        //int k; cin >> k;
-        trong.clear();
-        cham.clear();
-    }
+    void DiChuyen();
+    
     ~Si()
     {
     }
@@ -208,47 +177,12 @@ public:
         }
     }
 
-    void NuocDiCoBan()
-    {
-        trong.push_back(Point(p.x + 2, p.y + 2));
-        trong.push_back(Point(p.x - 2, p.y + 2));
-        trong.push_back(Point(p.x - 2, p.y - 2));
-        trong.push_back(Point(p.x + 2, p.y - 2));
-    }
-    void XoaBiChan()
-    {
-        for(int i = trong.size() - 1; i >= 0; i--)
-        {
-            for (int j = 0; j < den->size(); ++j)
-            {
-                if ((trong[i].x + p.x == 2 * den->at(j)->Getpx()) && (trong[i].y + p.y == 2 * den->at(j)->Getpy()))
-                {
-                    trong.erase(trong.begin() + i);
-                    break;
-                }
-            }
-            for (int j = 0; j < trang->size(); ++j)
-            {
-                if ((trong[i].x + p.x == 2 * trang->at(j)->Getpx()) && (trong[i].y + p.y == 2 * trang->at(j)->Getpy()))
-                {
-                    trong.erase(trong.begin() + i);
-                    break;
-                }
-            }
-        }
-    }
-  
-    void DiChuyen()
-    {
-        NuocDiCoBan();
-        XoaChamTuong();
-        XoaChamDongDoi();
-        XoaBiChan();
-        XoaChamDoiPhuong();       
-        Menu();
-        trong.clear();
-        cham.clear();
-    }
+    void NuocDiCoBan();
+    
+    void XoaBiChan();
+    
+    void DiChuyen();
+    
     ~Tinh()
     {
     }
@@ -278,119 +212,12 @@ public:
             trang = team1;
         }
     }
-    void NuocDiCoBan()
-    {
-        trong.push_back(Point(p.x + 2, p.y + 1));
-        trong.push_back(Point(p.x - 2, p.y + 1));
-        trong.push_back(Point(p.x + 2, p.y - 1));
-        trong.push_back(Point(p.x - 2, p.y - 1));
-
-        trong.push_back(Point(p.x + 1, p.y + 2));
-        trong.push_back(Point(p.x + 1, p.y - 2));
-        trong.push_back(Point(p.x - 1, p.y + 2));
-        trong.push_back(Point(p.x - 1, p.y - 2));
-    }
-
-    void XoaBiChan()
-    {
-        for (int i = 0; i < den->size(); ++i)
-        {
-            if (den->at(i)->Getpx() == p.x + 1 && den->at(i)->Getpy() == p.y)
-                for (int j = trong.size() - 1; j >= 0; j--)
-                {
-                    if (trong[j].x == p.x + 2)
-                    {
-                        trong.erase(trong.begin() + j);
-                        break;
-                    }
-                    
-                }
-            if (den->at(i)->Getpx() == p.x - 1 && den->at(i)->Getpy() == p.y)
-                for (int j = trong.size() - 1; j >= 0; j--)
-                {
-                    if (trong[j].x == p.x - 2)
-                    {
-                        trong.erase(trong.begin() + j);
-                        break;
-                    }
-
-                }
-            if (den->at(i)->Getpx() == p.x && den->at(i)->Getpy() == p.y + 1)
-                for (int j = trong.size() - 1; j >= 0; j--)
-                {
-                    if (trong[j].y == p.y + 2)
-                    {
-                        trong.erase(trong.begin() + j);
-                        break;
-                    }
-
-                }
-            if (den->at(i)->Getpx() == p.x && den->at(i)->Getpy() == p.y - 1)
-                for (int j = trong.size() - 1; j >= 0; j--)
-                {
-                    if (trong[j].y == p.y - 2)
-                    {
-                        trong.erase(trong.begin() + j);
-                        break;
-                    }
-                }
-        }
-
-        for (int i = 0; i < trang->size(); ++i)
-        {
-            if (trang->at(i)->Getpx() == p.x + 1 && trang->at(i)->Getpy() == p.y)
-                for (int j = trong.size() - 1; j >= 0; j--)
-                {
-                    if (trong[j].x == p.x + 2)
-                    {
-                        trong.erase(trong.begin() + j);
-                        break;
-                    }
-
-                }
-            if (trang->at(i)->Getpx() == p.x - 1 && trang->at(i)->Getpy() == p.y)
-                for (int j = trong.size() - 1; j >= 0; j--)
-                {
-                    if (trong[j].x == p.x - 2)
-                    {
-                        trong.erase(trong.begin() + j);
-                        break;
-                    }
-
-                }
-            if (trang->at(i)->Getpx() == p.x && trang->at(i)->Getpy() == p.y + 1)
-                for (int j = trong.size() - 1; j >= 0; j--)
-                {
-                    if (trong[j].y == p.y + 2)
-                    {
-                        trong.erase(trong.begin() + j);
-                        break;
-                    }
-
-                }
-            if (trang->at(i)->Getpx() == p.x && trang->at(i)->Getpy() == p.y - 1)
-                for (int j = trong.size() - 1; j >= 0; j--)
-                {
-                    if (trong[j].y == p.y - 2)
-                    {
-                        trong.erase(trong.begin() + j);
-                        break;
-                    }
-                }
-        }
-    }
-  
-    void DiChuyen()
-    {
-        NuocDiCoBan();
-        XoaChamTuong();
-        XoaChamDongDoi();
-        XoaBiChan();
-        XoaChamDoiPhuong();      
-        Menu();
-        trong.clear();
-        cham.clear();
-    }
+    void NuocDiCoBan();
+    
+    void XoaBiChan();
+    
+    void DiChuyen();
+   
     ~Ma()
     {
     }
@@ -420,116 +247,12 @@ public:
         }
     }
 
-    void NuocDiCoBan()
-    {
-        ////cout << "dong1:";
-        for (int i = p.x + 1; i <= x2; ++i)
-        {
-            trong.push_back(Point(i, p.y));
-            ////cout << trong.back().x << "-" << trong.back().y << "  ";
-        }
-        //cout << endl << "dong2:";
-        for (int i = p.x - 1; i >= x1; --i)
-        {
-            trong.push_back(Point(i, p.y));
-            //cout << trong.back().x << "-" << trong.back().y << "  ";
-        }
-        //cout << endl<<"dong3:";
-        for (int i = p.y + 1; i <= y2; ++i)
-        {
-            trong.push_back(Point(p.x, i));
-            //cout << trong.back().x << "-" << trong.back().y << "  ";
-        }
-        //cout << endl << "dong4:";
-        for (int i = p.y - 1; i >= y1; --i)
-        {
-            trong.push_back(Point(p.x, i));
-            //cout << trong.back().x << "-" << trong.back().y << "  ";
-        }        
-        //cout << endl << "dong5:";
-    }
+    void NuocDiCoBan();
 
-    void XoaBiChan()
-    {
-        for (int i = trong.size() - 1; i >= 0; i--)
-        {
-            for (int j = 0; j < den->size(); ++j)
-            {
-                if (p.x < den->at(j)->Getpx() && den->at(j)->Getpx() < trong[i].x && p.y == den->at(j)->Getpy())
-                {
-                    //cout << trong[i].x << "," << trong[i].y << "  ";
-                    trong.erase(trong.begin() + i);
-                    break;
-                }
-
-                if (trong[i].x < den->at(j)->Getpx() && den->at(j)->Getpx()< p.x && p.y == den->at(j)->Getpy())
-                {
-                    //cout << trong[i].x << "," << trong[i].y << "  ";
-                    trong.erase(trong.begin() + i);
-                    break;
-                }
-
-                if (p.y < den->at(j)->Getpy() && den->at(j)->Getpy() < trong[i].y && p.x == den->at(j)->Getpx())
-                {
-                    //cout << trong[i].x << "," << trong[i].y << "  ";
-                    trong.erase(trong.begin() + i);
-                    break;
-                }
-
-                if (trong[i].y < den->at(j)->Getpy() && den->at(j)->Getpy() < p.y && p.x == den->at(j)->Getpx())
-                {
-                    //cout << trong[i].x << "," << trong[i].y << "  ";
-                    trong.erase(trong.begin() + i);
-                    break;
-                }
-            }
-        }
-
-        for (int i = trong.size() - 1; i >= 0; i--)
-        {
-            for (int j = 0; j < trang->size(); ++j)
-            {
-                if (p.x < trang->at(j)->Getpx() && trang->at(j)->Getpx() < trong[i].x && p.y == trang->at(j)->Getpy())
-                {
-                    //cout << trong[i].x << "x" << trong[i].y << "  ";
-                    trong.erase(trong.begin() + i);
-                    break;
-                }
-
-                if (trong[i].x < trang->at(j)->Getpx() && trang->at(j)->Getpx() < p.x && p.y == trang->at(j)->Getpy())
-                {
-                    //cout << trong[i].x << "x" << trong[i].y << "  ";
-                    trong.erase(trong.begin() + i);
-                    break;
-                }
-
-                if (p.y < trang->at(j)->Getpy() && trang->at(j)->Getpy() < trong[i].y && p.x == trang->at(j)->Getpx())
-                {
-                    //cout << trong[i].x << "x" << trong[i].y << "  ";
-                    trong.erase(trong.begin() + i);
-                    break;
-                }
-
-                if (trong[i].y < trang->at(j)->Getpy() && trang->at(j)->Getpy() < p.y && p.x == trang->at(j)->Getpx())
-                {
-                    //cout << trong[i].x << "x" << trong[i].y << "  ";
-                    trong.erase(trong.begin() + i);
-                    break;
-                }
-            }
-        }
-    }
+    void XoaBiChan();
   
-    void DiChuyen()
-    {
-        NuocDiCoBan();
-        XoaBiChan();
-        XoaChamDongDoi();
-        XoaChamDoiPhuong();
-        Menu();
-        trong.clear();
-        cham.clear();
-    }
+    void DiChuyen();
+   
     ~Xe()
     {
     }
@@ -558,193 +281,12 @@ public:
             trang = team1;
         }
     }
-    void NuocDiCoBan()
-    {
-        for (int i = p.x + 1; i <= x2; ++i)
-        {
-            trong.push_back(Point(i, p.y));
-        }
+    void NuocDiCoBan();
 
-        for (int i = p.x - 1; i >= x1; --i)
-        {
-            trong.push_back(Point(i, p.y));
-        }
-
-        for (int i = p.y + 1; i <= y2; ++i)
-        {
-            trong.push_back(Point(p.x, i));
-        }
-
-        for (int i = p.y - 1; i >= y1; --i)
-        {
-            trong.push_back(Point(p.x, i));
-        }
-    }
-
-    void XoaBiChan()
-    {
-        for (int i = trong.size() - 1; i >= 0; i--)
-        {
-            for (int j = 0; j < den->size(); ++j)
-            {
-                if (p.x < den->at(j)->Getpx() && den->at(j)->Getpx() < trong[i].x && p.y == den->at(j)->Getpy())
-                {
-                    trong.erase(trong.begin() + i);
-                    break;
-                }
-
-                if (trong[i].x < den->at(j)->Getpx() && den->at(j)->Getpx() < p.x && p.y == den->at(j)->Getpy())
-                {
-                    trong.erase(trong.begin() + i);
-                    break;
-                }
-
-                if (p.y < den->at(j)->Getpy() && den->at(j)->Getpy() < trong[i].y && p.x == den->at(j)->Getpx())
-                {
-                    trong.erase(trong.begin() + i);
-                    break;
-
-                }
-
-                if (trong[i].y < den->at(j)->Getpy() && den->at(j)->Getpy() < p.y && p.x == den->at(j)->Getpx())
-                {
-                    trong.erase(trong.begin() + i);
-                    break;
-      
-                }
-            }
-        }
-
-        for (int i = trong.size() - 1; i >= 0; i--)
-        {
-            for (int j = 0; j < trang->size(); ++j)
-            {
-                if (p.x < trang->at(j)->Getpx() && trang->at(j)->Getpx() < trong[i].x && p.y == trang->at(j)->Getpy())
-                {
-                    trong.erase(trong.begin() + i);
-                    break;
-           
-                }
-
-                if (trong[i].x < trang->at(j)->Getpx() && trang->at(j)->Getpx() < p.x && p.y == trang->at(j)->Getpy())
-                {
-                    trong.erase(trong.begin() + i);
-                    break;
-      
-                }
-
-                if (p.y < trang->at(j)->Getpy() && trang->at(j)->Getpy() < trong[i].y && p.x == trang->at(j)->Getpx())
-                {
-                    trong.erase(trong.begin() + i);
-                    break;
-                }
-
-                if (trong[i].y < trang->at(j)->Getpy() && trang->at(j)->Getpy() < p.y && p.x == trang->at(j)->Getpx())
-                {
-                    trong.erase(trong.begin() + i);
-                    break;
-                }
-            }
-        }
-        
-        /*
-        cout << "dong1:";
-        for (int i = cham.size() - 1; i >= 0; i--)
-        {
-            cout << cham[i].x << "," << cham[i].y << "\t";
-        }
-        */
-
-        cout << endl;
-        int count;
-        for (int i = cham.size() - 1; i >= 0; i--)
-        {
-            
-            count = 0;
-            for (int j = 0; j < den->size(); ++j)
-            {
-                if (p.x < den->at(j)->Getpx() && den->at(j)->Getpx() < cham[i].x && p.y == den->at(j)->Getpy())
-                {
-                    count++;
-                }
-                else
-                if (cham[i].x < den->at(j)->Getpx() && den->at(j)->Getpx() < p.x && p.y == den->at(j)->Getpy())
-                {
-                    count++;
-                }
-                else
-                if (p.y < den->at(j)->Getpy() && den->at(j)->Getpy() < cham[i].y && p.x == den->at(j)->Getpx())
-                {
-                    count++;
-
-                }
-                else
-                if (cham[i].y < den->at(j)->Getpy() && den->at(j)->Getpy() < p.y && p.x == den->at(j)->Getpx())
-                {
-                    count++;
-
-                }     
-              
-            }
-            /*cout << "|" << count << "|";
-            cout << "dong1." << i << "   ";
-            for (int i = cham.size() - 1; i >= 0; i--)
-            {
-                cout << cham[i].x << "," << cham[i].y << "\t";
-            }
-            cout << endl;*/
-            for (int j = 0; j < trang->size(); ++j)
-            {
-                if (p.x < trang->at(j)->Getpx() && trang->at(j)->Getpx() < cham[i].x && p.y == trang->at(j)->Getpy())
-                {
-                    count++;
-
-                }
-
-                if (cham[i].x < trang->at(j)->Getpx() && trang->at(j)->Getpx() < p.x && p.y == trang->at(j)->Getpy())
-                {
-                    count++;
-                }
-
-                if (p.y < trang->at(j)->Getpy() && trang->at(j)->Getpy() < cham[i].y && p.x == trang->at(j)->Getpx())
-                {
-                    count++;
-                }
-
-                if (cham[i].y < trang->at(j)->Getpy() && trang->at(j)->Getpy() < p.y && p.x == trang->at(j)->Getpx())
-                {
-                    count++;
-                }
-            }
-            if (count != 1)
-            {
-                cham.erase(cham.begin() + i);
-            }
-        }
-       /* cout << endl;
-        cout << "dong2:";
-        for (int i = cham.size() - 1; i >= 0; i--)
-        {
-            cout << cham[i].x << "," << cham[i].y << "\t";
-        }
-        cout << endl;
-        */
-
-
+    void XoaBiChan();
   
-    }
-  
-    void DiChuyen()
-    {
-        NuocDiCoBan();
-        XoaChamDongDoi();     
-        XoaChamDoiPhuong();
-        XoaBiChan();
-        Menu();
+    void DiChuyen();
     
-        trong.clear();
-        cham.clear();
-    }
     ~Phao()
     {
     }
@@ -775,38 +317,10 @@ public:
             trang = team1;
         }
     }
-    void NuocDiCoBan()
-    {
-        if (doi == 0)
-        {
-            trong.push_back(Point(p.x, p.y + 1));
-            if (p.y >= 6)
-            {
-                trong.push_back(Point(p.x + 1, p.y));
-                trong.push_back(Point(p.x - 1, p.y));
-            }
-        }
-        else
-        {
-            trong.push_back(Point(p.x, p.y - 1));
-            if (p.y <=5)
-            {
-                trong.push_back(Point(p.x + 1, p.y));
-                trong.push_back(Point(p.x - 1, p.y));
-            }
-        }
-    }
+    void NuocDiCoBan();
  
-    void DiChuyen()
-    {
-        NuocDiCoBan();
-        XoaChamTuong();
-        XoaChamDongDoi();
-        XoaChamDoiPhuong();
-        Menu();
-        trong.clear();
-        cham.clear();
-    }
+    void DiChuyen();
+
     ~Tot()
     {
     }

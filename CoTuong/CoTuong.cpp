@@ -23,9 +23,7 @@ int main()
     b = new BanCo;
     b->Run();
     
-
-
-    
+   
     gotoXY(0, 17);
     delete b;
     system("pause");

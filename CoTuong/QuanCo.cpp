@@ -813,3 +813,7 @@ void Tot::DiChuyen()
     trong.clear();
     cham.clear();
 }
+
+Point::Point()
+{
+}

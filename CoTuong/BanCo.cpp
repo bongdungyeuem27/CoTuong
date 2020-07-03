@@ -59,16 +59,16 @@ void BanCo::ReFresh()
         gotoXY(trang[i]->Getpx() - 1, 10 - trang[i]->Getpy()); trang[i]->VeQuanCo();
     }
     changColor(14);
-    gotoXY(70, 0); cout << "Ben Den";
+    gotoXY(50, 0); cout << "Ben Den";
     for (int i = den.size() - 1; i >= 0; i--)
     {
-        gotoXY(70, i + 1); cout << "[" << setw(2) << right << i << "]:" << setw(6) << left << den[i]->GetTenQuanCo(); den[i]->VeQuanCo(); cout << " (" << den[i]->Getpx() << "," << den[i]->Getpy() << ") ";
+        gotoXY(50, i + 1); cout << "[" << setw(2) << right << i << "]:" << setw(6) << left << den[i]->GetTenQuanCo(); den[i]->VeQuanCo(); cout << " (" << den[i]->Getpx() << "," << den[i]->Getpy() << ") ";
     }
     changColor(15);
-    gotoXY(95, 0); cout << "Ben Trang";
+    gotoXY(75, 0); cout << "Ben Trang";
     for (int i = trang.size() - 1; i >= 0; i--)
     {
-        gotoXY(95, i + 1); cout << "[" << setw(2) << right << i << "]:" << setw(6) << left << trang[i]->GetTenQuanCo(); trang[i]->VeQuanCo(); cout << " (" << trang[i]->Getpx() << "," << trang[i]->Getpy() << ") ";
+        gotoXY(75, i + 1); cout << "[" << setw(2) << right << i << "]:" << setw(6) << left << trang[i]->GetTenQuanCo(); trang[i]->VeQuanCo(); cout << " (" << trang[i]->Getpx() << "," << trang[i]->Getpy() << ") ";
     }
 }
 

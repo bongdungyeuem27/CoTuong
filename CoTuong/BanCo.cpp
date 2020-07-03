@@ -48,16 +48,30 @@ void BanCo::ReFresh()
 
 {
     system("cls");
+    
+
     changColor(14);
     for (int i = den.size() - 1; i >= 0; i--)
     {
-        gotoXY(den[i]->Getpx() - 1, 10 - den[i]->Getpy()); den[i]->VeQuanCo();
+        gotoXY(den[i]->Getpx() + 2, 10 - den[i]->Getpy()); den[i]->VeQuanCo();
     }
     changColor(15);
+
     for (int i = trang.size() - 1; i >= 0; i--)
     {
-        gotoXY(trang[i]->Getpx() - 1, 10 - trang[i]->Getpy()); trang[i]->VeQuanCo();
+        gotoXY(trang[i]->Getpx() + 2, 10 - trang[i]->Getpy()); trang[i]->VeQuanCo();
     }
+
+    for (int i = 10; i > 0; i--)
+    {
+        gotoXY(0, 10 - i); cout << i;
+    }
+    cout << endl << "   ";
+    for (int i = 1; i < 10; i++)
+    {
+        cout << i;
+    }
+
     changColor(14);
     gotoXY(50, 0); cout << "Ben Den";
     for (int i = den.size() - 1; i >= 0; i--)

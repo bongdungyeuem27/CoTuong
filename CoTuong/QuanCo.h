@@ -12,7 +12,7 @@
 #include "QuanCo.h"
 using namespace std;
 
-class Point
+struct Point
 {
 public:
     int x; int y;
@@ -22,38 +22,65 @@ public:
         x = a; y = b;
     }
 };
+//Lớp cha
 class QuanCo
 {
 private:
 protected:
+    //Giới hạn trái, giới hạn phải, giới hạn dưới, giới hạn trên của kích thước bàn cờ
     int consox1 = 1, consox2 = 9, consoy1 = 1, consoy2 = 10;
+    //Giới hạn trái, giới hạn phải, giới hạn dưới, giới hạn trên của con tướng
     int x1, x2, y1, y2;
-    bool thua = 0;
-    vector <Point> trong;
-    vector <Point> cham;
-    vector <QuanCo*>* trang;
-    vector <QuanCo*>* den;
+
+    //Biến lưu vị trí quân cờ
     Point p;
+    //Tên của quân cờ
     string TenQuanCo;
+    //Kí hiệu quân cờ
     string kihieuquanco;
+
+    //Biến kiểm tra quân vua 
+    bool thua = 0;
+    //Mảng lưu các vị trí trống
+    vector <Point> trong;
+    //Mảng lưu các vị trí chạm đối phương
+    vector <Point> cham;
+    
+    //Con trỏ tới tất cả các quân cờ trắng
+    vector <QuanCo*>* trang;
+
+    //Con trỏ tới tất cả các quân cờ đen
+    vector <QuanCo*>* den;
+    
+    
 public:
-    //1
+    //Contructor QuanCo
     QuanCo()
     {
-
     }
 
+    //B1: Lưu các nước đi cơ bản có thể có của quân cờ nếu ko tính đến các vật cản
     virtual void NuocDiCoBan() = 0;
-    //2
+
+    //B2: Loại trừ vật cả là giới hạn 4 bên của tường hoặc cung
     virtual void XoaChamTuong();
-    //3
+   
+    //B3: Loại trừ vật cản là đồng đội
     void XoaChamDongDoi();
-    //5
+
+    //B4: Loại trừ vật cản là các quân cờ chặn ở giữa đường đi như mã bị chăn,..
+    //Hàm cục bộ của từng đội tượng
+
+    //B5: Loại trừ vật cản là đối phương, và đưa cái vị trí này vào mảng chạm để biết rằng sẽ ăn được các quân này
     void XoaChamDoiPhuong();
-    //6
-    virtual void DiChuyen() = 0;
-    //6.1
+    
+    //B6.1: Hiển thị các ô đi được   
     void Menu();
+
+    //B6.2: Thực Hiện quá trình di chuyển quân cờ
+    virtual void DiChuyen() = 0;
+
+    
     //Getter and Setter
     int Getpx() { return p.x; }
     int Getpy() { return p.y; }
@@ -74,9 +101,10 @@ public:
     {
         p.y = a;
     }
+    //Xuất ra kí hiệu quân cờ
     virtual void VeQuanCo();
        
-    
+    //Detructor
     virtual ~QuanCo()
     {
         trong.clear();
@@ -95,7 +123,7 @@ public:
         p.x = x; p.y = y;
         if (mau == 0)
         {
-            den = team1;
+            den = team1; 
             trang = team2;
             y1 = consoy1, y2 = 3, x1 = 4, x2 = 6;
         }

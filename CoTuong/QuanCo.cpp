@@ -2,8 +2,6 @@
 
 void QuanCo::XoaChamTuong()
 {
-   // cout << "x1=" << x1 << "x2=" << x2 << "y1=" << y1 << "y2=" << y2 << endl;
-    //cout << "tuong";
     for (int i = trong.size() - 1; i >= 0; i--)
     {
         //cout << i;

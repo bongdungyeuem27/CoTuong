@@ -88,7 +88,7 @@ void BanCo::Run()
         }
         if (thua == 0)
         {
-            gotoXY(0, 30);
+            gotoXY(0, 20);
             cout << "BEN DEN thua! BEN TRANG thang! ";
             return;
         }
@@ -110,7 +110,7 @@ void BanCo::Run()
         }
         if (thua == 0)
         {
-            gotoXY(0, 30);
+            gotoXY(0, 20);
             cout << "BEN TRANG thua! BEN DEN thang! ";
             return;
         }

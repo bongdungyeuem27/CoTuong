@@ -14,10 +14,12 @@ using namespace std;
 class BanCo
 {
 private:
+    vector <QuanCo*> den;
+    vector <QuanCo*> trang;
+    
 protected:
 public:
-    vector <QuanCo*> trang;
-    vector <QuanCo*> den;
+    
     BanCo();
 
     void ReFresh();

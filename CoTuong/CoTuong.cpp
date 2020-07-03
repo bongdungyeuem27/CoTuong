@@ -8,7 +8,6 @@
 #include <iostream>
 #include <cstdlib>
 
-
 #include "source.h"
 #include "QuanCo.h"
 #include "BanCo.h"

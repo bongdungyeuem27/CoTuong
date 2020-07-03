@@ -74,11 +74,13 @@ public:
     //B5: Loại trừ vật cản là đối phương, và đưa cái vị trí này vào mảng chạm để biết rằng sẽ ăn được các quân này
     void XoaChamDoiPhuong();
     
-    //B6.1: Hiển thị các ô đi được   
-    void Menu();
+    
 
-    //B6.2: Thực Hiện quá trình di chuyển quân cờ
+    //B6.1: Thực hiện kiểm tra các ô có thể di chuyển
     virtual void DiChuyen() = 0;
+
+    //B6.2: Hiển thị các ô đi được   
+    void Menu();
 
     
     //Getter and Setter

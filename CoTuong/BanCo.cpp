@@ -1,7 +1,7 @@
-#include "BanCo.h"
+﻿#include "BanCo.h"
 
+//Nạp Bàn cờ gồm 16 đen, 16 trắng
 BanCo::BanCo()
-
 {
     den.push_back(new Tuong(&den, &trang, 0, 5, 1));
     den.push_back(new Si(&den, &trang, 0, 4, 1));
@@ -43,6 +43,7 @@ BanCo::BanCo()
     ReFresh();
 }
 
+//Hiển thị ra màn hình 
 void BanCo::ReFresh()
 
 {
@@ -69,18 +70,18 @@ void BanCo::ReFresh()
     {
         gotoXY(95, i + 1); cout << "[" << setw(2) << right << i << "]:" << setw(6) << left << trang[i]->GetTenQuanCo(); trang[i]->VeQuanCo(); cout << " (" << trang[i]->Getpx() << "," << trang[i]->Getpy() << ") ";
     }
-
-
 }
 
+//Thực thi toàn bộ toán trình chơi
 void BanCo::Run()
-
 {
     int n = 0;
     bool thua;
 
     while (trang.size() != 0 || den.size() != 0)
     {
+
+        //Kiểm tra đen thua
         thua = 0;
         for (int i = den.size() - 1; i >= 0; i--)
         {
@@ -92,6 +93,8 @@ void BanCo::Run()
             cout << "BEN DEN thua! BEN TRANG thang! ";
             return;
         }
+
+        //Chọn quân cờ đen 
         gotoXY(0, 18); cout << "BEN DEN: Chon quan co: "; cin >> n;
         while (1)
         {
@@ -101,8 +104,13 @@ void BanCo::Run()
             }
             else break;
         }
+        //Di chuyển quân đen
         den.at(n)->DiChuyen();
+
+        //Hiển thị lại màn hình cho chính xác
         ReFresh();
+
+        //Kiểm tra trắng thua
         thua = 0;
         for (int i = trang.size() - 1; i >= 0; i--)
         {
@@ -115,6 +123,7 @@ void BanCo::Run()
             return;
         }
 
+        //Chọn quân cờ trắng 
         gotoXY(0, 18); cout << "BEN TRANG: Chon quan co: "; cin >> n;
         while (1)
         {
@@ -124,11 +133,15 @@ void BanCo::Run()
             }
             else break;
         }
+        //Di chuyển quân trắng
         trang.at(n)->DiChuyen();
+
+        //Hiển thị lại màn hình cho chính xác
         ReFresh();
     }
 }
 
+//Detructor
 BanCo::~BanCo()
 {
     for (int i = 0; i < den.size(); ++i)
@@ -139,5 +152,4 @@ BanCo::~BanCo()
         delete trang[i];
     trang.clear();
     den.clear();
-    trang.clear();
 }
